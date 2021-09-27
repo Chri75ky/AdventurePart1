@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Room {
     private Room north;
     private Room south;
@@ -7,6 +9,7 @@ public class Room {
     private Room west;
     private String description;
     private String name;
+     ArrayList<Item> itemList = new ArrayList<>();
 
     public Room(Room north, Room south, Room east, Room west){
     this.north = north;
@@ -18,37 +21,51 @@ public class Room {
         this.name = name;
         this.description = description;
     }
+    public void addToItem(Item item){
+        itemList.add(item);
 
+    }
+    public ArrayList<Item> getItemList(){
+        return itemList;
+    }
     public Room getNorth() {
         return north;
     }
 
-    public void setNorth(Room north) {
-        this.north = north;
+    public void setNorth(Room north){
+        if (this.north == null){
+            this.north = north;
+            north.setSouth(this);
+        }
     }
 
     public Room getSouth() {
         return south;
     }
 
-    public void setSouth(Room south) {
-        this.south = south;
+    public void setSouth(Room north){
+        if (this.south == null){
+            this.south = north;
+            south.setNorth(this);
+        }
     }
-
     public Room getEast() {
         return east;
     }
-
-    public void setEast(Room east) {
-        this.east = east;
+    public void setEast(Room east){
+        if (this.east == null){
+            this.east = east;
+            east.setWest(this);
+        }
     }
-
     public Room getWest() {
         return west;
     }
-
-    public void setWest(Room west) {
-        this.west = west;
+    public void setWest(Room west){
+        if (this.west == null){
+            this.west = west;
+            west.setEast(this);
+        }
     }
 
     public String getDescription() {
@@ -58,4 +75,14 @@ public class Room {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        String temp = "";
+        for (int i = 0; i < itemList.size(); i++) {
+            temp += itemList.get(i) + ", ";
+        }
+        return "In the room there is " + temp;
+    }
 }
+
