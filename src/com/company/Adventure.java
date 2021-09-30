@@ -3,7 +3,9 @@ package com.company;
 import java.util.Scanner;
 
 public class Adventure {
+
     static Player player = new Player();
+
     public static void main(String[] args) {
         Map map = new Map();
         map.getCurrentRoom();
@@ -11,9 +13,8 @@ public class Adventure {
         Room selectedRoom = map.getCurrentRoom();
         Room requestedRoom = null;
 
-
         Scanner in = new Scanner(System.in);
-       String action = "test";
+        String action = "test";
         System.out.println("Welcome to the Adventure Game! Enter 'help' for more information about the game.");
        while(!action.equalsIgnoreCase("exit")) {
            System.out.println("Please input your next action: ");
@@ -56,17 +57,23 @@ public class Adventure {
 
        }
     }
+
     public static void look(Room selectedRoom){
         System.out.println("Looking around.");
         System.out.println("You are in room: " + selectedRoom.getName());
         System.out.println(selectedRoom.getDescription());
-        player.takeItem("a shiny key that seems to be the ground floor key");
+
+        player.takeItem("take key", selectedRoom);
+        player.takeItem("take book", selectedRoom);
+
         if(selectedRoom.getItemList().size() > 0) {
             System.out.println(selectedRoom.toString());
         }else{
             System.out.println("There is nothing in this room.");
         }
     }
+
+
     public static void help(){
         System.out.println("You have chosen the help menu, here are the commands you can use in the Adventure Game game: ");
         System.out.println();
@@ -76,6 +83,7 @@ public class Adventure {
         System.out.println("Enter 'go south' if you wish to go south.");
         System.out.println("Enter 'go west' if you wish to go west.");
         System.out.println("Enter 'go east' if you wish to go east.");
+        System.out.println("take [name of item] if you wish take the specific item.");
         System.out.println();
     }
 }

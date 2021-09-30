@@ -29,6 +29,7 @@ public class Map {
 
         currentRoom = room1;
     }
+
     public Room getCurrentRoom(){
         return currentRoom;
     }
