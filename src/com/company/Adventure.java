@@ -41,7 +41,7 @@ public class Adventure {
         while (runGame == true) {
             System.out.print("\nPlease input your next action: ");
             userInput = in.nextLine();
-            userInput.toLowerCase(Locale.ROOT);
+            userInput = userInput.toLowerCase();
 
             //De forskellige commands som brugeren kan inputte - hvis command ikke er legal bliver det udskrevet.
             switch(userInput) {
