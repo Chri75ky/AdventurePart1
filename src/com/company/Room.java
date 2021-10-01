@@ -1,5 +1,4 @@
 package com.company;
-
 import java.util.ArrayList;
 
 public class Room {
@@ -11,50 +10,48 @@ public class Room {
     private String name;
     private ArrayList<Item> itemList = new ArrayList<>();
 
-    public Room(Room north, Room south, Room east, Room west){
-    this.north = north;
-    this.south = south;
-    this.east = east;
-    this.west = west;
-    }
+    //Room constructor
     public Room(String name, String description){
         this.name = name;
         this.description = description;
     }
-    public void addToItem(Item item){
-        itemList.add(item);
 
+    //Adds item Objects to Room objects Item ArrayList
+    public void addToItem(Item item){
+        this.itemList.add(item);
     }
 
-
-
-    public void removeItem(String itemName) {
+    //Checks if item is in the room and removes it from this room if it is present and then returns that Item object to Player object
+    public Item removeItem(String itemName) {
         for (int i = 0; i < this.itemList.size(); i++) {
             if (this.itemList.get(i).getName().contains(itemName)) {
+                Item toPlayer = this.itemList.get(i);
+                System.out.println("You have taken '" + this.getItemList().get(i).toString() + "' from the " + this.getName() + ".");
                 this.itemList.remove(i);
+                return toPlayer;
             }
         }
+        return null;
     }
 
-
+    //Returns ArrayList of Items in the room
     public ArrayList<Item> getItemList(){
-        return itemList;
+        return this.itemList;
     }
+
+    //Methods returns or sets Room objects directions
     public Room getNorth() {
         return north;
     }
-
     public void setNorth(Room north){
         if (this.north == null){
             this.north = north;
             north.setSouth(this);
         }
     }
-
     public Room getSouth() {
         return south;
     }
-
     public void setSouth(Room north){
         if (this.south == null){
             this.south = north;
@@ -80,21 +77,26 @@ public class Room {
         }
     }
 
-    public String getDescription() {
-        return description;
-    }
-
+    //Methods returns name or desciption of Room Object
     public String getName() {
-        return name;
+        return this.name;
+    }
+    public String getDescription() {
+        return this.description;
     }
 
-    @Override
+    @Override //Overriding toString to return af stringBuilder with all item Objects descriptions in the room
     public String toString() {
-        String temp = "";
+        //Creating stringBuilder object
+        StringBuilder str = new StringBuilder();
+
         for (int i = 0; i < itemList.size(); i++) {
-            temp += itemList.get(i) + ", ";
+            str.append("(" + (i+1) + ") " + itemList.get(i) + ", ");
         }
-        return "In the room there is " + temp;
+
+        str.delete(str.lastIndexOf(","),str.length());
+        return "In the room there is " + str;
     }
+
 }
 

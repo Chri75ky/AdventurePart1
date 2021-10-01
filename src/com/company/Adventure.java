@@ -1,70 +1,121 @@
 package com.company;
-
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Adventure {
 
-    static Player player = new Player();
-
+    //Velkomst og starter spillet op
     public static void main(String[] args) {
-        Map map = new Map();
-        map.getCurrentRoom();
-
-        Room selectedRoom = map.getCurrentRoom();
-        Room requestedRoom = null;
-
-        Scanner in = new Scanner(System.in);
-        String action = "test";
+        //Intro
         System.out.println("Welcome to the Adventure Game! Enter 'help' for more information about the game.");
-       while(!action.equalsIgnoreCase("exit")) {
-           System.out.println("Please input your next action: ");
-           action = in.nextLine();
-           if (action.equalsIgnoreCase("Go north")) {
-               System.out.println("Going north.");
-               requestedRoom = selectedRoom.getNorth();
-               if(selectedRoom.getNorth() == null){
-                   System.out.println("You cannot go this way!");
-               }
-           } else if (action.equalsIgnoreCase("Go south")) {
-               System.out.println("Going south.");
-               requestedRoom = selectedRoom.getSouth();
-               if(selectedRoom.getSouth() == null){
-                   System.out.println("You cannot go this way!");
-               }
-           } else if (action.equalsIgnoreCase("Go East")) {
-               System.out.println("Going east.");
-               requestedRoom = selectedRoom.getEast();
-               if(selectedRoom.getEast() == null){
-                   System.out.println("You cannot go this way!");
-               }
-           } else if (action.equalsIgnoreCase("Go West")) {
-               System.out.println("Going west.");
-               requestedRoom = selectedRoom.getWest();
-               if(selectedRoom.getWest() == null){
-                   System.out.println("You cannot go this way!");
-               }
-           } else if (action.equalsIgnoreCase("Look")) {
-               look(selectedRoom);
-           }
-           else if (action.equalsIgnoreCase("help")){
-               help();
-           }
-           if(requestedRoom != null) {
-               System.out.println("You are now at: " + requestedRoom.getName());
-               selectedRoom = requestedRoom;
-               System.out.println(requestedRoom.getDescription());
-           }
 
-       }
+        //Method that starts and runs the game
+        runGame();
     }
 
-    public static void look(Room selectedRoom){
-        System.out.println("Looking around.");
+
+    //Opretter player object
+    static Player player = new Player();
+
+    //Opretter nyt Map objekt (som sætter current room til room1)
+    static Map map = new Map();
+
+    //Variable der holder styr på hvilket Rum vi er i (og player er i) - startværdi room1.
+    static Room selectedRoom = map.getCurrentRoom();
+
+
+    //Method runs the game
+    public static void runGame() {
+
+        //Sets players starting location to selectedRoom (room1)
+        player.setPlayerLocation(selectedRoom);
+
+        //Opretter boolean og string variabel
+        Boolean runGame = true;
+        String userInput;
+
+        //Opretter scanner object
+        Scanner in = new Scanner(System.in);
+
+        //Runs the game
+        while (runGame == true) {
+            System.out.print("\nPlease input your next action: ");
+            userInput = in.nextLine();
+            userInput.toLowerCase(Locale.ROOT);
+
+            //De forskellige commands som brugeren kan inputte - hvis command ikke er legal bliver det udskrevet.
+            switch(userInput) {
+                case "go north", "north", "n":
+                    Room getNorth = selectedRoom.getNorth();
+                    move("north", getNorth);
+                    break;
+
+                case "go south", "south", "s":
+                    Room getSouth = selectedRoom.getSouth();
+                    move("south", getSouth);
+                    break;
+
+                case "go east", "east", "e":
+                    Room getEast = selectedRoom.getEast();
+                    move("east", getEast);
+                    break;
+
+                case "go west", "west", "w":
+                    Room getWest = selectedRoom.getWest();
+                    move("west", getWest);
+                    break;
+
+                case "look", "l":
+                    System.out.println("\nLooking around.");
+                    look();
+                    break;
+
+                case "help", "h":
+                    help();
+                    break;
+
+                case "exit", "x":
+                    runGame = false;
+                    break;
+
+                case "inventory", "i":
+                    lookInInventory();
+                    break;
+
+                default:
+                    if (userInput.contains("take")) {              //Take items from room
+                        player.takeItem(userInput);
+
+                    } else if (userInput.contains("drop")) {       //Drops items in room
+                        player.dropItem(userInput);
+
+                    } else {
+                        //If userInput dosen't match any commands
+                        System.out.println("\nThe word '" + userInput + "' is not a legal command. Enter 'help' for a list of legal commands.");
+                    }
+            }
+        }
+    }
+
+
+    //Method changes selectedRoom (current room user is in) and sets new playerLocation if the move direction is legal
+    public static void move(String direction, Room getDirection) {
+        System.out.println("\nGoing " + direction + ".");
+
+        Room requestedRoom = getDirection;
+        if(getDirection == null){
+            System.out.println("You cannot go this way!");
+        } else {
+            selectedRoom = requestedRoom;
+            player.setPlayerLocation(selectedRoom);
+            look();
+        }
+    }
+
+    //Method that prints out the name of the room, room description and items in the selectedRoom
+    public static void look(){
         System.out.println("You are in room: " + selectedRoom.getName());
         System.out.println(selectedRoom.getDescription());
-
-        player.takeItem("take key", selectedRoom);
-        player.takeItem("take book", selectedRoom);
 
         if(selectedRoom.getItemList().size() > 0) {
             System.out.println(selectedRoom.toString());
@@ -73,17 +124,27 @@ public class Adventure {
         }
     }
 
+    //Method that prints a list of Items in inventory if there is something in the players inventory
+    public static void lookInInventory() {
+        System.out.println("\nLooking in backpack.");
+        if (player.showInventory().isEmpty()){
+            System.out.println("It doesn't seem that you have anything in your backpack.");
+        } else {
+            System.out.println(player.showInventory());
+        }
+    }
 
+    //Method prints a list of possible user commands
     public static void help(){
-        System.out.println("You have chosen the help menu, here are the commands you can use in the Adventure Game game: ");
-        System.out.println();
-        System.out.println("Enter 'exit' to exit the game.");
-        System.out.println("Enter 'look' to look around your surroundings.");
-        System.out.println("Enter 'go north' if you wish to go north.");
-        System.out.println("Enter 'go south' if you wish to go south.");
-        System.out.println("Enter 'go west' if you wish to go west.");
-        System.out.println("Enter 'go east' if you wish to go east.");
-        System.out.println("take [name of item] if you wish take the specific item.");
-        System.out.println();
+        System.out.println("\nYou have chosen the help menu, here are the commands you can use in the Adventure Game: \n");
+        System.out.println("Enter 'exit/x' to exit the game.");
+        System.out.println("Enter 'look/l' to look around your surroundings.");
+        System.out.println("Enter 'go north/north/n' if you wish to go north.");
+        System.out.println("Enter 'go south/south/s' if you wish to go south.");
+        System.out.println("Enter 'go west/west/w' if you wish to go west.");
+        System.out.println("Enter 'go east/east/e' if you wish to go east.");
+        System.out.println("Enter 'take [name of item]' if you wish to take the specific item.");
+        System.out.println("Enter 'drop [name of item]' if you wish to drop the specific item.");
+        System.out.println("Enter 'inventory/i' if you wish to take a look in your backpack.");
     }
 }

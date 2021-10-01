@@ -1,29 +1,22 @@
 package com.company;
 
-import java.util.ArrayList;
-
 public class Item {
     private String name;
     private String description;
 
-
-
+    //Item constructor
     public Item(String name, String description){
         this.name = name;
         this.description = description;
-
     }
 
+    //Returns the objects name
     public String getName() {
-        return name;
+        return this.name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    @Override
+    @Override //Overriding toString to only return objects description
     public String toString() {
-        return description;
+        return this.description;
     }
 }

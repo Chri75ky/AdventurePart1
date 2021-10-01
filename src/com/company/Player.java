@@ -1,21 +1,73 @@
 package com.company;
 import java.util.ArrayList;
 
-
 public class Player {
     private ArrayList<Item> inventory = new ArrayList<>();
+    private Room currentRoom = null;
 
-    public void takeItem(String itemToTake, Room currentRoom){
-        //TODO Tag item fra rum, slet item fra rummet og placer item i inventory
-        currentRoom.removeItem(itemToTake);
+    //Method calls another method that checks if the item is in the room (and deletes it from currentroom) and then calls a method that adds that item to inventory ArrayList
+    public void takeItem(String itemToTake){
+        Item itemToInventory = currentRoom.removeItem(itemToTake);
 
+        if (itemToInventory != null) {
+            addItem(itemToInventory);
+
+        } else {
+            System.out.println("The item '" + itemToTake.substring(5) + "' is not in the room.");
+        }
     }
 
-    public void dropItem(String itemToDrop){
-        //TODO Slet item fra inventory og placer i currentRoom
+    //Method adds the item to players inventory
+    public void addItem(Item itemToInventory) {
+        System.out.println("It is now in your inventory.");
+        inventory.add(itemToInventory);
     }
 
-    public String showInventory(){
-        return null;
+    //Method checks if 'itemToDrop' is in the inventory - if item is present it calls method that adds item object to the room and then calls method that deletes item object from inventory
+    public void dropItem(String itemToDrop) {
+
+        //Removes 'drop' from the word so it can look for only the item name in getName which has suffix 'get [item name]'
+        String itemName = itemToDrop.substring(5);
+
+        boolean hasDropped = false;
+
+        for (int i = 0; i <this.inventory.size(); i++) {
+            if (this.inventory.get(i).getName().contains(itemName)) {
+
+                System.out.println("You have dropped '" + itemName + "' into the room.");
+                currentRoom.addToItem(this.inventory.get(i));
+                removeItem(this.inventory.get(i));
+                hasDropped = true;
+            }
+        }
+
+        if (hasDropped == false) {
+            System.out.println("The item '" + itemName + "' is not in your inventory.");
+        }
+    }
+
+    //Method removes the item from players inventory
+    public void removeItem (Item itemToInventory) {
+        System.out.println("The item is removed from your inventory.");
+        inventory.remove(itemToInventory);
+    }
+
+    //Method returns a stringBuilder with the item objects description in the inventory
+    public String showInventory() {
+        //Creating stringBuilder object
+        StringBuilder str = new StringBuilder();
+
+        for (int i = 0; i < inventory.size(); i++) {
+            str.append("(" + (i+1) + ") " + inventory.get(i) + ", ");
+        }
+
+        str.delete(str.lastIndexOf(","),str.length());
+        return "In your backpack you have " + str;
+    }
+
+    //Method sets playerslocation to the selectedRoom when called
+    public Room setPlayerLocation(Room selectedRoom) {
+        this.currentRoom = selectedRoom;
+        return this.currentRoom;
     }
 }
