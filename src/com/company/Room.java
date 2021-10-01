@@ -91,11 +91,11 @@ public class Room {
         StringBuilder str = new StringBuilder();
 
         for (int i = 0; i < itemList.size(); i++) {
-            str.append("(" + (i+1) + ") " + itemList.get(i) + ", ");
+            str.append("(" + (i+1) + ") " + itemList.get(i) + ",\n ");
         }
 
         str.delete(str.lastIndexOf(","),str.length());
-        return "In the room there is " + str;
+        return "In the room there is: " + str;
     }
 
 }

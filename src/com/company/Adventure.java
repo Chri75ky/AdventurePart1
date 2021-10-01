@@ -38,7 +38,7 @@ public class Adventure {
         Scanner in = new Scanner(System.in);
 
         //Runs the game
-        while (runGame == true) {
+        while (runGame) {
             System.out.print("\nPlease input your next action: ");
             userInput = in.nextLine();
             userInput = userInput.toLowerCase();
@@ -114,7 +114,7 @@ public class Adventure {
 
     //Method that prints out the name of the room, room description and items in the selectedRoom
     public static void look(){
-        System.out.println("You are in room: " + selectedRoom.getName());
+        System.out.println("You are now at the: " + selectedRoom.getName());
         System.out.println(selectedRoom.getDescription());
 
         if(selectedRoom.getItemList().size() > 0) {

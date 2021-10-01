@@ -41,7 +41,7 @@ public class Player {
             }
         }
 
-        if (hasDropped == false) {
+        if (!hasDropped) {
             System.out.println("The item '" + itemName + "' is not in your inventory.");
         }
     }
@@ -58,11 +58,11 @@ public class Player {
         StringBuilder str = new StringBuilder();
 
         for (int i = 0; i < inventory.size(); i++) {
-            str.append("(" + (i+1) + ") " + inventory.get(i) + ", ");
+            str.append("(" + (i+1) + ") " + inventory.get(i) + ",\n ");
         }
 
         str.delete(str.lastIndexOf(","),str.length());
-        return "In your backpack you have " + str;
+        return "In your backpack you have: " + str;
     }
 
     //Method that returns ArrayList of items - inventory
