@@ -65,6 +65,11 @@ public class Player {
         return "In your backpack you have " + str;
     }
 
+    //Method that returns ArrayList of items - inventory
+    public ArrayList<Item> getInventory(){
+        return  inventory;
+    }
+
     //Method sets playerslocation to the selectedRoom when called
     public Room setPlayerLocation(Room selectedRoom) {
         this.currentRoom = selectedRoom;

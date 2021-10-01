@@ -127,7 +127,7 @@ public class Adventure {
     //Method that prints a list of Items in inventory if there is something in the players inventory
     public static void lookInInventory() {
         System.out.println("\nLooking in backpack.");
-        if (player.showInventory().isEmpty()){
+        if (player.getInventory().isEmpty()){
             System.out.println("It doesn't seem that you have anything in your backpack.");
         } else {
             System.out.println(player.showInventory());
