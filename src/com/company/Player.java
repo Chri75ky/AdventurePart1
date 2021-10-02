@@ -62,7 +62,7 @@ public class Player {
         }
 
         str.delete(str.lastIndexOf(","),str.length());
-        return "In your backpack you have: " + str;
+        return Colour.TEXT_GREEN + "In your backpack you have: " + Colour.TEXT_CYAN + str + Colour.TEXT_RESET;
     }
 
     //Method that returns ArrayList of items - inventory

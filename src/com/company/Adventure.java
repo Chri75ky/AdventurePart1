@@ -6,7 +6,7 @@ public class Adventure {
     //Velkomst og starter spillet op
     public static void main(String[] args) {
         //Intro
-        System.out.println("Welcome to the Adventure Game! Enter 'help' for more information about the game.");
+        System.out.println(Colour.TEXT_YELLOW + "\nWelcome to the Adventure Game! Enter '" + Colour.TEXT_PURPLE + "help" + Colour.TEXT_YELLOW + "' for more information about the game." + Colour.TEXT_RESET);
 
         //Method that starts and runs the game
         runGame();
@@ -90,7 +90,7 @@ public class Adventure {
 
                     } else {
                         //If userInput dosen't match any commands
-                        System.out.println("\nThe word '" + userInput + "' is not a legal command. Enter 'help' for a list of legal commands.");
+                        System.out.println(Colour.TEXT_RED + "\nThe word '" + userInput + "' is not a legal command. Enter '" + Colour.TEXT_PURPLE + "help" + Colour.TEXT_RED + "' for a list of legal commands." + Colour.TEXT_RESET);
                     }
             }
         }
@@ -99,11 +99,11 @@ public class Adventure {
 
     //Method changes selectedRoom (current room user is in) and sets new playerLocation if the move direction is legal
     public static void move(String direction, Room getDirection) {
-        System.out.println("\nGoing " + direction + ".");
+        System.out.println(Colour.TEXT_WHITE + "\nGoing " + direction + "." + Colour.TEXT_RESET);
 
         Room requestedRoom = getDirection;
         if(getDirection == null){
-            System.out.println("You cannot go this way!");
+            System.out.println(Colour.TEXT_RED + "You cannot go this way!" + Colour.TEXT_RESET);
         } else {
             selectedRoom = requestedRoom;
             player.setPlayerLocation(selectedRoom);
@@ -125,9 +125,9 @@ public class Adventure {
 
     //Method that prints a list of Items in inventory if there is something in the players inventory
     public static void lookInInventory() {
-        System.out.println("\nLooking in backpack.");
+        System.out.println(Colour.TEXT_WHITE + "\nLooking in backpack." + Colour.TEXT_RESET);
         if (player.getInventory().isEmpty()){
-            System.out.println("It doesn't seem that you have anything in your backpack.");
+            System.out.println(Colour.TEXT_WHITE + "It doesn't seem that you have anything in your backpack." + Colour.TEXT_RESET);
         } else {
             System.out.println(player.showInventory());
         }
@@ -135,15 +135,16 @@ public class Adventure {
 
     //Method prints a list of possible user commands
     public static void help(){
-        System.out.println("\nYou have chosen the help menu, here are the commands you can use in the Adventure Game: \n");
-        System.out.println("Enter 'exit/x' to exit the game.");
-        System.out.println("Enter 'look/l' to look around your surroundings.");
-        System.out.println("Enter 'go north/north/n' if you wish to go north.");
-        System.out.println("Enter 'go south/south/s' if you wish to go south.");
-        System.out.println("Enter 'go west/west/w' if you wish to go west.");
-        System.out.println("Enter 'go east/east/e' if you wish to go east.");
-        System.out.println("Enter 'take [name of item]' if you wish to take the specific item.");
-        System.out.println("Enter 'drop [name of item]' if you wish to drop the specific item.");
-        System.out.println("Enter 'inventory/i' if you wish to take a look in your backpack.");
+        System.out.println(Colour.TEXT_YELLOW + "\nYou have chosen the help menu, here are the commands you can use in the Adventure Game: \n");
+        System.out.println("Enter '" + Colour.TEXT_PURPLE + "go north/north/n" + Colour.TEXT_YELLOW + "' if you wish to go north.");
+        System.out.println("Enter '" + Colour.TEXT_PURPLE + "go south/south/s" + Colour.TEXT_YELLOW + "' if you wish to go south.");
+        System.out.println("Enter '" + Colour.TEXT_PURPLE + "go west/west/w" + Colour.TEXT_YELLOW + "' if you wish to go west.");
+        System.out.println("Enter '" + Colour.TEXT_PURPLE + "go east/east/e" + Colour.TEXT_YELLOW + "' if you wish to go east.");
+        System.out.println("Enter '" + Colour.TEXT_PURPLE + "look/l" + Colour.TEXT_YELLOW + "' to look around your surroundings.");
+        System.out.println("Enter '" + Colour.TEXT_PURPLE + "take [name of item]" + Colour.TEXT_YELLOW + "' if you wish to take the specific item.");
+        System.out.println("Enter '" + Colour.TEXT_PURPLE + "drop [name of item]" + Colour.TEXT_YELLOW + "' if you wish to drop the specific item.");
+        System.out.println("Enter '" + Colour.TEXT_PURPLE + "inventory/i" + Colour.TEXT_YELLOW + "' if you wish to take a look in your backpack.");
+        System.out.println("Enter '" + Colour.TEXT_PURPLE + "exit/x" + Colour.TEXT_YELLOW + "' to exit the game." + Colour.TEXT_RESET);
+
     }
 }
