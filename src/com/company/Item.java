@@ -15,6 +15,11 @@ public class Item {
         return this.name;
     }
 
+    //Returns the objects description
+    public String getDescription() {
+        return description;
+    }
+
     @Override //Overriding toString to only return objects description
     public String toString() {
         return this.description;

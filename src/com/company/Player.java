@@ -13,7 +13,7 @@ public class Player {
             addItem(itemToInventory);
 
         } else {
-            System.out.println("The item '" + itemToTake.substring(5) + "' is not in the room.");
+            System.out.println("The item '" + itemToTake.substring(4) + "' is not in the room.");
         }
     }
 
@@ -34,7 +34,7 @@ public class Player {
         for (int i = 0; i <this.inventory.size(); i++) {
             if (this.inventory.get(i).getName().contains(itemName)) {
 
-                System.out.println("You have dropped '" + itemName + "' into the room.");
+                System.out.println("You have dropped '" + this.inventory.get(i).getDescription() + "' into the room.");
                 currentRoom.addToItem(this.inventory.get(i));
                 removeItem(this.inventory.get(i));
                 hasDropped = true;
