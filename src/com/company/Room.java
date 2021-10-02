@@ -26,7 +26,7 @@ public class Room {
         for (int i = 0; i < this.itemList.size(); i++) {
             if (this.itemList.get(i).getName().contains(itemName)) {
                 Item toPlayer = this.itemList.get(i);
-                System.out.println("You have taken '" + this.getItemList().get(i).toString() + "' from the " + this.getName() + ".");
+                System.out.println(Colour.TEXT_YELLOW + "\nYou have taken '" + Colour.TEXT_CYAN + this.getItemList().get(i).toString() + Colour.TEXT_YELLOW + "' from the " + this.getName() + "." + Colour.TEXT_RESET);
                 this.itemList.remove(i);
                 return toPlayer;
             }
@@ -95,7 +95,7 @@ public class Room {
         }
 
         str.delete(str.lastIndexOf(","),str.length());
-        return "In the room there is: " + str;
+        return Colour.TEXT_YELLOW + "In the room there is: " + Colour.TEXT_CYAN + str + Colour.TEXT_RESET;
     }
 
 }

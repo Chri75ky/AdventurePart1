@@ -13,13 +13,13 @@ public class Player {
             addItem(itemToInventory);
 
         } else {
-            System.out.println("The item '" + itemToTake.substring(4) + "' is not in the room.");
+            System.out.println(Colour.TEXT_RED + "\nThe item '" + Colour.TEXT_CYAN + itemToTake.substring(4) + Colour.TEXT_RED + "' is not in the room." + Colour.TEXT_RESET);
         }
     }
 
     //Method adds the item to players inventory
     public void addItem(Item itemToInventory) {
-        System.out.println("It is now in your inventory.");
+        System.out.println(Colour.TEXT_YELLOW + "It is now in your inventory." + Colour.TEXT_RESET);
         inventory.add(itemToInventory);
     }
 
@@ -34,7 +34,7 @@ public class Player {
         for (int i = 0; i <this.inventory.size(); i++) {
             if (this.inventory.get(i).getName().contains(itemName)) {
 
-                System.out.println("You have dropped '" + this.inventory.get(i).getDescription() + "' into the room.");
+                System.out.println(Colour.TEXT_YELLOW + "\nYou have dropped '" + Colour.TEXT_CYAN + this.inventory.get(i).getDescription() + Colour.TEXT_YELLOW + "' into the room.");
                 currentRoom.addToItem(this.inventory.get(i));
                 removeItem(this.inventory.get(i));
                 hasDropped = true;
@@ -42,13 +42,13 @@ public class Player {
         }
 
         if (!hasDropped) {
-            System.out.println("The item '" + itemName + "' is not in your inventory.");
+            System.out.println(Colour.TEXT_RED + "\nThe item '" + Colour.TEXT_CYAN + itemName + Colour.TEXT_RED + "' is not in your inventory." + Colour.TEXT_RESET);
         }
     }
 
     //Method removes the item from players inventory
     public void removeItem (Item itemToInventory) {
-        System.out.println("The item is removed from your inventory.");
+        System.out.println(Colour.TEXT_YELLOW +"The item is removed from your inventory." + Colour.TEXT_RESET);
         inventory.remove(itemToInventory);
     }
 
@@ -62,7 +62,7 @@ public class Player {
         }
 
         str.delete(str.lastIndexOf(","),str.length());
-        return Colour.TEXT_GREEN + "In your backpack you have: " + Colour.TEXT_CYAN + str + Colour.TEXT_RESET;
+        return Colour.TEXT_YELLOW + "In your backpack you have: " + Colour.TEXT_CYAN + str + Colour.TEXT_RESET;
     }
 
     //Method that returns ArrayList of items - inventory
