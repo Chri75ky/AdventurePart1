@@ -1,4 +1,5 @@
 package com.company;
+
 import java.util.ArrayList;
 
 public class Room {
@@ -6,18 +7,18 @@ public class Room {
     private Room south;
     private Room east;
     private Room west;
-    private String description;
-    private String name;
-    private ArrayList<Item> itemList = new ArrayList<>();
+    private final String description;
+    private final String name;
+    private final ArrayList<Item> itemList = new ArrayList<>();
 
     //Room constructor
-    public Room(String name, String description){
+    public Room(String name, String description) {
         this.name = name;
         this.description = description;
     }
 
     //Adds item Objects to Room objects Item ArrayList
-    public void addToItem(Item item){
+    public void addToItem(Item item) {
         this.itemList.add(item);
     }
 
@@ -35,7 +36,7 @@ public class Room {
     }
 
     //Returns ArrayList of Items in the room
-    public ArrayList<Item> getItemList(){
+    public ArrayList<Item> getItemList() {
         return this.itemList;
     }
 
@@ -43,35 +44,42 @@ public class Room {
     public Room getNorth() {
         return north;
     }
-    public void setNorth(Room north){
-        if (this.north == null){
+
+    public void setNorth(Room north) {
+        if (this.north == null) {
             this.north = north;
             north.setSouth(this);
         }
     }
+
     public Room getSouth() {
         return south;
     }
-    public void setSouth(Room north){
-        if (this.south == null){
+
+    public void setSouth(Room north) {
+        if (this.south == null) {
             this.south = north;
             south.setNorth(this);
         }
     }
+
     public Room getEast() {
         return east;
     }
-    public void setEast(Room east){
-        if (this.east == null){
+
+    public void setEast(Room east) {
+        if (this.east == null) {
             this.east = east;
             east.setWest(this);
         }
     }
+
     public Room getWest() {
         return west;
     }
-    public void setWest(Room west){
-        if (this.west == null){
+
+    public void setWest(Room west) {
+        if (this.west == null) {
             this.west = west;
             west.setEast(this);
         }
@@ -81,6 +89,7 @@ public class Room {
     public String getName() {
         return this.name;
     }
+
     public String getDescription() {
         return this.description;
     }
@@ -91,10 +100,10 @@ public class Room {
         StringBuilder str = new StringBuilder();
 
         for (int i = 0; i < itemList.size(); i++) {
-            str.append("(" + (i+1) + ") " + itemList.get(i) + ",\n ");
+            str.append("(" + (i + 1) + ") " + itemList.get(i) + ",\n ");
         }
 
-        str.delete(str.lastIndexOf(","),str.length());
+        str.delete(str.lastIndexOf(","), str.length());
         return Colour.TEXT_YELLOW + "In the room there is: " + Colour.TEXT_CYAN + str + Colour.TEXT_RESET;
     }
 

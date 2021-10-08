@@ -1,11 +1,11 @@
 package com.company;
 
 public class Item {
-    private String name;
-    private String description;
+    private final String name;
+    private final String description;
 
     //Item constructor
-    public Item(String name, String description){
+    public Item(String name, String description) {
         this.name = name;
         this.description = description;
     }

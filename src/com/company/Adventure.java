@@ -1,4 +1,5 @@
 package com.company;
+
 import java.util.Scanner;
 
 public class Adventure {
@@ -43,7 +44,7 @@ public class Adventure {
             userInput = userInput.toLowerCase();
 
             //De forskellige commands som brugeren kan inputte - hvis command ikke er legal bliver det udskrevet.
-            switch(userInput) {
+            switch (userInput) {
                 case "go north", "north", "n":
                     Room getNorth = selectedRoom.getNorth();
                     move("north", getNorth);
@@ -103,7 +104,7 @@ public class Adventure {
         System.out.println("\nGoing " + direction + ".");
 
         Room requestedRoom = getDirection;
-        if(getDirection == null){
+        if (getDirection == null) {
             System.out.println(Colour.TEXT_RED + "You cannot go this way!" + Colour.TEXT_RESET);
         } else {
             selectedRoom = requestedRoom;
@@ -113,13 +114,13 @@ public class Adventure {
     }
 
     //Method that prints out the name of the room, room description and items in the selectedRoom
-    public static void look(){
+    public static void look() {
         System.out.println(Colour.TEXT_YELLOW + "You are now at the: " + selectedRoom.getName());
         System.out.println(selectedRoom.getDescription() + Colour.TEXT_RESET);
 
-        if(selectedRoom.getItemList().size() > 0) {
+        if (selectedRoom.getItemList().size() > 0) {
             System.out.println(selectedRoom.toString());
-        }else{
+        } else {
             System.out.println(Colour.TEXT_YELLOW + "There is nothing in this room." + Colour.TEXT_RESET);
         }
     }
@@ -127,7 +128,7 @@ public class Adventure {
     //Method that prints a list of Items in inventory if there is something in the players inventory
     public static void lookInInventory() {
         System.out.println("\nLooking in backpack.");
-        if (player.getInventory().isEmpty()){
+        if (player.getInventory().isEmpty()) {
             System.out.println("It doesn't seem that you have anything in your backpack.");
         } else {
             System.out.println(player.showInventory());
@@ -135,7 +136,7 @@ public class Adventure {
     }
 
     //Method prints a list of possible user commands
-    public static void help(){
+    public static void help() {
         System.out.println(Colour.TEXT_YELLOW + "\nYou have chosen the help menu, here are the commands you can use in the Adventure Game: \n");
         System.out.println("Enter '" + Colour.TEXT_PURPLE + "go north" + Colour.TEXT_YELLOW + " / " + Colour.TEXT_PURPLE + "north" + Colour.TEXT_YELLOW + " / " + Colour.TEXT_PURPLE + "n" + Colour.TEXT_YELLOW + "' if you wish to go north.");
         System.out.println("Enter '" + Colour.TEXT_PURPLE + "go south" + Colour.TEXT_YELLOW + " / " + Colour.TEXT_PURPLE + "south" + Colour.TEXT_YELLOW + " / " + Colour.TEXT_PURPLE + "s" + Colour.TEXT_YELLOW + "' if you wish to go south.");

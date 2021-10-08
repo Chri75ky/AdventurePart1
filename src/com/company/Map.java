@@ -1,10 +1,10 @@
 package com.company;
 
 public class Map {
-    private Room currentRoom;
+    private final Room currentRoom;
 
     //Map constructor
-    public Map(){
+    public Map() {
         //Opretter Room objekter
         Room room1 = new Room("Entrance", "You are now at the entrance to KEA. Around you, is the reception and you can see students rushing to their classes.");
         Room room2 = new Room("Canteen", "You are now at the canteen. Here you can relax at the tables and eat your lunch. You can smell the freshly brewed coffee.");
@@ -42,7 +42,7 @@ public class Map {
     }
 
     //Returns the current Room object
-    public Room getCurrentRoom(){
+    public Room getCurrentRoom() {
         return currentRoom;
     }
 }
