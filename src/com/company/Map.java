@@ -18,14 +18,14 @@ public class Map {
 
         //Opretter Item objekter til de forskellige rum
         room1.addToItem(new Item("take key", "a shiny key. The classic adventure item guys and gals! I just hope we made a place to use it"));
-        room2.addToItem(new Item("take coffee", "a refreshing cup of coffee, just by smelling the aroma you feel just about able to take on the day"));
-        room2.addToItem(new Item("take apple", "a shiny apple. Shiny enough to impress even the most strict teachers"));
-        room3.addToItem(new Item("take book", "a student book. Do you really need more of a description?"));
-        room4.addToItem(new Item("take lighter", "a lighter someone must have left on the ground, could be useful, if you're a pyromaniac"));
-        room6.addToItem(new Item("take helmet", "a bicycle helmet. It could be used as a shield? I guess? Seriously, who came up with this?"));
-        room7.addToItem(new Item("take cookie", "a well-done-cookie! Turns out taking the healthy choice does make a difference! By making it unhealthy as well"));
-        room9.addToItem(new Item("take bar", "a bland protein bar? Even though it may be a bit bland, at least it's kind of healthy?"));
-
+        room2.addToItem(new Food("take coffee", "a refreshing cup of coffee, just by smelling the aroma you feel just about able to take on the day", 20));
+        room2.addToItem(new Food("take apple", "a shiny apple. Shiny enough to impress even the most strict teachers", 15));
+        room3.addToItem(new MeleeWeapon("take book", "a student book. Do you really need more of a description?",2));
+        room4.addToItem(new MeleeWeapon("take lighter", "a lighter someone must have left on the ground, could be useful, if you're a pyromaniac", 8));
+        room6.addToItem(new MeleeWeapon("take helmet", "a bicycle helmet. It could be used as a shield? I guess? Seriously, who came up with this?", 5));
+        room7.addToItem(new Food("take cookie", "a well-done-cookie! Turns out taking the healthy choice does make a difference! By making it unhealthy as well", 25));
+        room9.addToItem(new Food("take bar", "a bland protein bar? Even though it may be a bit bland, at least it's kind of healthy?", 30));
+        room8.addToItem(new ShootingWeapon("take glock", "a gold-plated glock, an infamous game icon.", 30, 12));
         //Sætter Room objekters forbindelse til hinanden
         room1.setEast(room2);
         room1.setSouth(room4);

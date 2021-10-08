@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Player {
     private final ArrayList<Item> inventory = new ArrayList<>();
     private Room currentRoom = null;
+    private int currentHealth;
+    private Item equippedItem;
 
     //Method calls another method that checks if the item is in the room (and deletes it from currentroom) and then calls a method that adds that item to inventory ArrayList
     public void takeItem(String itemToTake) {
@@ -75,5 +77,58 @@ public class Player {
     public Room setPlayerLocation(Room selectedRoom) {
         this.currentRoom = selectedRoom;
         return this.currentRoom;
+    }
+    // Method returns currentHealth of player
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+    // Method sets currentHealth to a specific value
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
+    }
+    // Method to add health to player's currentHealth
+    public void addToCurrentHealth(int healthPoints){
+        this.currentHealth += healthPoints;
+    }
+    public enum weaponsYouCanEquip{
+        // List of weapons that the player can equip from their inventory
+        BOOK, LIGHTER, HELMET, GLOCK
+    }
+    public enum edibleItems {
+        // List of edible items, used to check if items in player inventory are edible
+        COFFEE, APPLE, BAR, COOKIE
+    }
+    // Method to check if an item is in player inventory
+    public boolean isItemInInventory(String itemToFind){
+        boolean isInInventory = false;
+        for (int i = 0; i < this.inventory.size(); i++) {
+            if(this.inventory.get(i).getName().contains(itemToFind)) {
+                isInInventory = true;
+            }
+        }
+        return isInInventory;
+    }
+    // Method to find an Item in player inventory that returns said Item
+    public Item getItemInInventory(String itemToFind){
+        Item itemToGet = null;
+        for (int i = 0; i < this.inventory.size(); i++) {
+            if(this.inventory.get(i).getName().contains(itemToFind)){
+                itemToGet = this.inventory.get(i);
+            }
+        }
+        return itemToGet;
+    }
+
+    public void setEquippedItem(Item equippedItem) {
+        // If player already has an equipped weapon, add it back to
+        // the player inventory and replace it with the new weapon
+        if(this.equippedItem != null){
+            addItem(this.equippedItem);
+        }
+        this.equippedItem = equippedItem;
+    }
+
+    public Item getEquippedItem() {
+        return equippedItem;
     }
 }
