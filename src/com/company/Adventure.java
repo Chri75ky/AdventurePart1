@@ -32,6 +32,10 @@ public class Adventure {
         player.setPlayerLocation(selectedRoom);
         player.setCurrentHealth(100);
 
+        //Initializing and setting starting weapon as knucles/bare hands
+        Weapon knucles = new MeleeWeapon("knucles", "Your weak hands won't do much damage, but it is better than nothing!", 2);
+        player.setEquippedItem(knucles);
+
         //Opretter boolean og string variabel
         Boolean runGame = true;
         String userInput;
@@ -117,6 +121,9 @@ public class Adventure {
                         }catch(IndexOutOfBoundsException e) {
                             System.out.println("Can't equip 'nothing'.");
                         }
+                    } else if (userInput.contains("attack")) {
+                        attack(userInput);
+
                     } else {
                         //If userInput dosen't match any commands
                         System.out.println(Colour.TEXT_RED + "\nThe word '" + userInput + "' is not a legal command. Enter '" + Colour.TEXT_PURPLE + "help" + Colour.TEXT_RED + "' for a list of legal commands." + Colour.TEXT_RESET);
@@ -242,6 +249,15 @@ public class Adventure {
         } else {
             System.out.println("The item " + itemToEquip + " is not in your inventory!");
     }
+
+    }
+
+    public static void attack(String input) {
+
+
+
+
+
 
     }
 }

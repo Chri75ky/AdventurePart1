@@ -119,16 +119,32 @@ public class Player {
         return itemToGet;
     }
 
-    public void setEquippedItem(Item equippedItem) {
+    public void setEquippedItem(Item equippedItem) {   //TODO FJern knucles fra backpack når de bliver skiftet ud
         // If player already has an equipped weapon, add it back to
         // the player inventory and replace it with the new weapon
-        if(this.equippedItem != null){
+        if(this.equippedItem != null) {
             addItem(this.equippedItem);
         }
+
         this.equippedItem = equippedItem;
     }
 
     public Item getEquippedItem() {
         return equippedItem;
     }
+
+
+    //Method deals damage to player object
+    public int takeDamage (int enemyDamage) {
+        this.currentHealth =- enemyDamage;
+        return this.currentHealth;
+    }
+
+/*
+    //Method returns the damage player object deals
+    public int attack() {
+        return equippedItem
+    }
+    */
+
 }
