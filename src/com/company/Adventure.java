@@ -33,7 +33,7 @@ public class Adventure {
         player.setCurrentHealth(100);
 
         //Initializing and setting starting weapon as knucles/bare hands
-        Weapon knucles = new MeleeWeapon("knucles", "Your weak hands won't do much damage, but it is better than nothing!", 2);
+        Weapon knucles = new MeleeWeapon("knucles", "Your weak hands won't do much damage, but it is better than nothing!", 2, 999);
         player.setEquippedItem(knucles);
 
         //Opretter boolean og string variabel
@@ -122,7 +122,11 @@ public class Adventure {
                             System.out.println("Can't equip 'nothing'.");
                         }
                     } else if (userInput.contains("attack")) {
-                        attack(userInput);
+                        if (selectedRoom.getEnemyList().size() == 0) {
+                            System.out.println("There is nothing to attack in this room");
+                        } else {
+                            attack(userInput);
+                        }
 
                     } else {
                         //If userInput dosen't match any commands
@@ -151,6 +155,13 @@ public class Adventure {
     public static void look() {
         System.out.println(Colour.TEXT_YELLOW + "You are now at the: " + selectedRoom.getName());
         System.out.println(selectedRoom.getDescription() + Colour.TEXT_RESET);
+
+        if (selectedRoom.getEnemyList().size() > 0) {
+            System.out.println(selectedRoom.getEnemyList());
+        } else {
+            System.out.println("There are no enemies in the room.");
+        }
+
 
         if (selectedRoom.getItemList().size() > 0) {
             System.out.println(selectedRoom.toString());
@@ -253,11 +264,55 @@ public class Adventure {
     }
 
     public static void attack(String input) {
+        Enemy enemyToAttack = enemyToAttack(input);
+
+        if (((Weapon) player.getEquippedItem()).usesLeft() > 0) {
+
+            int damageToEnemy = player.attack();
+            enemyToAttack.takeDamage(damageToEnemy);
+            ((Weapon) player.getEquippedItem()).ammoUsed();
+            System.out.println("The enemy now has " + enemyToAttack.getCurrentHealth() + " left.");
 
 
 
+
+        } else {
+            System.out.println("The " + player.getEquippedItem().getName() + " has no ammo left.");
+        }
 
 
 
     }
+
+
+    // Method return enemy object that player wants to attack or are closest to player in the SelectedRoom
+    public static Enemy enemyToAttack (String input) {
+
+        Enemy enemyToAttack = null;
+
+        //If player wrote attack + 'enemy name' it looks for the enemy name in the arraylist for the room
+        if (input.length() >= 7) {
+            String enemyName = input.substring(7);
+
+            for (int i = 0; i < selectedRoom.getEnemyList().size(); i++) {
+                if (selectedRoom.getEnemyList().get(i).getName().contains(enemyName)) {
+                    enemyToAttack = selectedRoom.getEnemyList().get(i);
+                } else {
+                    System.out.println("The enemy " + enemyName + " is not in the room.");
+                }
+            }
+        } else {
+            // If input is only 'attack' - it will attack enemy at arrayindex 0
+            if (!selectedRoom.getEnemyList().isEmpty()) {
+                enemyToAttack = selectedRoom.getEnemyList().get(0);
+
+            } else {
+                System.out.println("There are no enemies in the room.");
+            }
+        }
+
+        return enemyToAttack;
+    }
+
+
 }

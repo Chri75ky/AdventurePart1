@@ -27,9 +27,27 @@ public class Enemy {
         return equippedWeapon.getDamage();
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
 
+    public Weapon getEquippedWeapon() {
+        return equippedWeapon;
+    }
 
-
+    @Override //TODO lav til stringbuilder
+    public String toString() {
+        return "Enemy{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

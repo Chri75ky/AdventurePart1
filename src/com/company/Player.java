@@ -119,6 +119,7 @@ public class Player {
         return itemToGet;
     }
 
+
     public void setEquippedItem(Item equippedItem) {   //TODO FJern knucles fra backpack når de bliver skiftet ud
         // If player already has an equipped weapon, add it back to
         // the player inventory and replace it with the new weapon
@@ -140,11 +141,15 @@ public class Player {
         return this.currentHealth;
     }
 
-/*
+
     //Method returns the damage player object deals
     public int attack() {
-        return equippedItem
+
+        int damage = 0;
+        if (equippedItem instanceof Weapon) {
+            damage = ((Weapon) equippedItem).getDamage();
+        }
+        return damage;
     }
-    */
 
 }

@@ -10,6 +10,7 @@ public class Room {
     private final String description;
     private final String name;
     private final ArrayList<Item> itemList = new ArrayList<>();
+    private final ArrayList<Enemy> enemyList = new ArrayList<>();
 
     //Room constructor
     public Room(String name, String description) {
@@ -20,6 +21,11 @@ public class Room {
     //Adds item Objects to Room objects Item ArrayList
     public void addToItem(Item item) {
         this.itemList.add(item);
+    }
+
+    //Adds enemy Objects to Room objects Item ArrayList
+    public void addEnemy(Enemy enemy) {
+        this.enemyList.add(enemy);
     }
 
     //Checks if item is in the room and removes it from this room if it is present and then returns that Item object to Player object
@@ -38,6 +44,11 @@ public class Room {
     //Returns ArrayList of Items in the room
     public ArrayList<Item> getItemList() {
         return this.itemList;
+    }
+
+    //Returns ArrayList of Enemy in the room
+    public ArrayList<Enemy> getEnemyList() {
+        return this.enemyList;
     }
 
     //Methods returns or sets Room objects directions
