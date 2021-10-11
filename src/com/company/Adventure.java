@@ -158,6 +158,7 @@ public class Adventure {
         if (player.getInventory().isEmpty()) {
             System.out.println("It doesn't seem that you have anything in your backpack.");
         } else {
+            //TODO tilføj equipped Item
             System.out.println(player.showInventory());
         }
     }
