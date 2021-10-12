@@ -1,10 +1,10 @@
 package com.company;
 
 public class Enemy {
-    String name;
-    String description;
-    int currentHealth;
-    Weapon equippedWeapon;
+    private String name;
+    private String description;
+    private int currentHealth;
+    private Weapon equippedWeapon;
 
 
     public Enemy(String name, String description, int currentHealth, Weapon equippedWeapon) {
