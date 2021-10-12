@@ -5,7 +5,6 @@ public class Enemy {
     String description;
     int currentHealth;
     Weapon equippedWeapon;
-    // Måske currentRoom TODO
 
 
     public Enemy(String name, String description, int currentHealth, Weapon equippedWeapon) {
@@ -42,7 +41,6 @@ public class Enemy {
     public Weapon getEquippedWeapon() {
         return equippedWeapon;
     }
-
     @Override //TODO lav til stringBuilder
     public String toString() {
         return "Enemy{" +

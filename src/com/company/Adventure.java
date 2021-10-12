@@ -297,9 +297,9 @@ public class Adventure {
         }
 
     }
-
+    //TODO Player skal kunne dø i attack sekvens
     public static void attack(String input) {
-        Enemy enemy = enemyToAttack(input);
+        Enemy enemy = player.enemyToAttack(input);
 
         if (((Weapon) player.getEquippedItem()).usesLeft() > 0) {
             int damageToEnemy = player.attack();
@@ -322,39 +322,5 @@ public class Adventure {
         } else {
             System.out.println("The " + player.getEquippedItem().getName() + " has no uses left.");
         }
-
-
     }
-
-
-    // Method return enemy object that player wants to attack or are closest to player in the SelectedRoom
-    public static Enemy enemyToAttack(String input) {
-
-        Enemy enemyToAttack = null;
-
-        //If player wrote attack + 'enemy name' it looks for the enemy name in the arraylist for the room
-        if (input.length() >= 7) {
-            String enemyName = input.substring(7);
-
-            for (int i = 0; i < selectedRoom.getEnemyList().size(); i++) {
-                if (selectedRoom.getEnemyList().get(i).getName().contains(enemyName)) {
-                    enemyToAttack = selectedRoom.getEnemyList().get(i);
-                } else {
-                    System.out.println("The enemy " + enemyName + " is not in the room.");
-                }
-            }
-        } else {
-            // If input is only 'attack' - it will attack enemy at arrayIndex 0
-            if (!selectedRoom.getEnemyList().isEmpty()) {
-                enemyToAttack = selectedRoom.getEnemyList().get(0);
-
-            } else {
-                System.out.println("There are no enemies in the room.");
-            }
-        }
-
-        return enemyToAttack;
-    }
-
-
 }

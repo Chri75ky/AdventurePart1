@@ -28,7 +28,7 @@ public class Map {
         room8.addToItem(new ShootingWeapon("glock", "a gold-plated glock, an infamous game icon.", 12, 30));
 
         // Opretter monster Objekter til de forskellige rum
-        Weapon wire = new MeleeWeapon("take wire", "an exposed wire, be careful not to get electrocuted", 7, 999);
+        Weapon wire = new MeleeWeapon("take wire", "an exposed wire, be careful not to get electrocuted", 8, 999);
         room1.addEnemy(new Enemy("peter", "an angry teacher", 50, wire));
 
 

@@ -157,5 +157,35 @@ public class Player {
         }
         return damage;
     }
+    // Method return enemy object that player wants to attack or are closest to player in the SelectedRoom
+    public Enemy enemyToAttack(String input) {
+
+        Enemy enemyToAttack = null;
+
+        //If player wrote attack + 'enemy name' it looks for the enemy name in the arraylist for the room
+        if (input.length() >= 7) {
+            String enemyName = input.substring(7);
+
+            for (int i = 0; i < currentRoom.getEnemyList().size(); i++) {
+                if (currentRoom.getEnemyList().get(i).getName().contains(enemyName)) {
+                    enemyToAttack = currentRoom.getEnemyList().get(i);
+                } else {
+                    System.out.println("The enemy " + enemyName + " is not in the room.");
+                }
+            }
+        } else {
+            // If input is only 'attack' - it will attack enemy at arrayIndex 0
+            if (!currentRoom.getEnemyList().isEmpty()) {
+                enemyToAttack = currentRoom.getEnemyList().get(0);
+
+            } else {
+                System.out.println("There are no enemies in the room.");
+            }
+        }
+
+        return enemyToAttack;
+    }
+
+
 
 }
