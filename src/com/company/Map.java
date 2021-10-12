@@ -3,9 +3,9 @@ package com.company;
 public class Map {
     private final Room currentRoom;
 
-    //Map constructor
+    // Map constructor
     public Map() {
-        //Opretter Room objekter
+        // Opretter Room objekter
         Room room1 = new Room("Entrance", "You are now at the entrance to KEA. Around you, is the reception and you can see students rushing to their classes.");
         Room room2 = new Room("Canteen", "You are now at the canteen. Here you can relax at the tables and eat your lunch. You can smell the freshly brewed coffee.");
         Room room3 = new Room("Library", "You are now at the library. It's your first time here, feel free to read a book, but remember to be quiet.");
@@ -16,23 +16,23 @@ public class Map {
         Room room8 = new Room("Third floor", "You are now at the third floor. You see some classmates. Now you know you're close to class.");
         Room room9 = new Room("Ground floor elevator", "You are at the ground floor elevator. It's okay to be lazy sometimes, go ahead and take the elevator.");
 
-        //Opretter Item objekter til de forskellige rum
-        room1.addToItem(new Item("take key", "a shiny key. The classic adventure item guys and gals! I just hope we made a place to use it"));
-        room2.addToItem(new Food("take coffee", "a refreshing cup of coffee, just by smelling the aroma you feel just about able to take on the day", 20));
-        room2.addToItem(new Food("take apple", "a shiny apple. Shiny enough to impress even the most strict teachers", 15));
-        room3.addToItem(new MeleeWeapon("take book", "a student book. Do you really need more of a description?",2, 999));
-        room4.addToItem(new MeleeWeapon("take lighter", "a lighter someone must have left on the ground, could be useful, if you're a pyromaniac", 8, 999));
-        room6.addToItem(new MeleeWeapon("take helmet", "a bicycle helmet. It could be used as a shield? I guess? Seriously, who came up with this?", 5, 999));
-        room7.addToItem(new Food("take cookie", "a well-done-cookie! Turns out taking the healthy choice does make a difference! By making it unhealthy as well", 25));
-        room9.addToItem(new Food("take bar", "a bland protein bar? Even though it may be a bit bland, at least it's kind of healthy?", 30));
-        room8.addToItem(new ShootingWeapon("take glock", "a gold-plated glock, an infamous game icon.", 12, 30));
+        // Opretter Item objekter til de forskellige rum
+        room1.addToItem(new Item("key", "a shiny key. The classic adventure item guys and gals! I just hope we made a place to use it"));
+        room2.addToItem(new Food("coffee", "a refreshing cup of coffee, just by smelling the aroma you feel just about able to take on the day", 20));
+        room2.addToItem(new Food("apple", "a shiny apple. Shiny enough to impress even the most strict teachers", 15));
+        room3.addToItem(new MeleeWeapon("book", "a student book. Do you really need more of a description?", 2, 999));
+        room4.addToItem(new MeleeWeapon("lighter", "a lighter someone must have left on the ground, could be useful, if you're a pyromaniac", 8, 999));
+        room6.addToItem(new MeleeWeapon("helmet", "a bicycle helmet. It could be used as a shield? I guess? Seriously, who came up with this?", 5, 999));
+        room7.addToItem(new Food("cookie", "a well-done-cookie! Turns out taking the healthy choice does make a difference! By making it unhealthy as well", 25));
+        room9.addToItem(new Food("bar", "a bland protein bar? Even though it may be a bit bland, at least it's kind of healthy?", 30));
+        room8.addToItem(new ShootingWeapon("glock", "a gold-plated glock, an infamous game icon.", 12, 30));
 
-        //Opretter monster Objekter til de forskellige rum
-        Weapon wire = new MeleeWeapon("take wire", "an exposed wire, be carefull not to get electricuted", 7,999);
+        // Opretter monster Objekter til de forskellige rum
+        Weapon wire = new MeleeWeapon("take wire", "an exposed wire, be careful not to get electrocuted", 7, 999);
         room1.addEnemy(new Enemy("peter", "an angry teacher", 50, wire));
 
 
-        //Sætter Room objekters forbindelse til hinanden
+        // Sætter Room objekters forbindelse til hinanden
         room1.setEast(room2);
         room1.setSouth(room4);
         room2.setEast(room3);
@@ -43,11 +43,11 @@ public class Map {
         room7.setEast(room8);
         room8.setEast(room9);
 
-        //Sætter currentRoom til Room Object: room1
+        // Sætter currentRoom til Room Object: room1
         currentRoom = room1;
     }
 
-    //Returns the current Room object
+    // Returns the current Room object
     public Room getCurrentRoom() {
         return currentRoom;
     }

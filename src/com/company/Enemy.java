@@ -5,7 +5,7 @@ public class Enemy {
     String description;
     int currentHealth;
     Weapon equippedWeapon;
-    //Måske currentRoom TODO
+    // Måske currentRoom TODO
 
 
     public Enemy(String name, String description, int currentHealth, Weapon equippedWeapon) {
@@ -15,14 +15,14 @@ public class Enemy {
         this.equippedWeapon = equippedWeapon;
     }
 
-    //Method deals damage to monster object
-    public int takeDamage (int playerDamage) {
-        this.currentHealth =- playerDamage;
+    // Method deals damage to monster object
+    public int takeDamage(int playerDamage) {
+        this.currentHealth = this.currentHealth - playerDamage;
         return this.currentHealth;
     }
 
 
-    //Method returns the damage monster object deals
+    // Method returns the damage monster object deals
     public int attack() {
         return equippedWeapon.getDamage();
     }
@@ -43,7 +43,7 @@ public class Enemy {
         return equippedWeapon;
     }
 
-    @Override //TODO lav til stringbuilder
+    @Override //TODO lav til stringBuilder
     public String toString() {
         return "Enemy{" +
                 "name='" + name + '\'' +
