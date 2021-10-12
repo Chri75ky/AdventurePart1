@@ -170,7 +170,7 @@ public class Player {
                 if (currentRoom.getEnemyList().get(i).getName().contains(enemyName)) {
                     enemyToAttack = currentRoom.getEnemyList().get(i);
                 } else {
-                    System.out.println("The enemy " + enemyName + " is not in the room.");
+                    System.out.println("The enemy '" + enemyName + "' is not in the room.");
                 }
             }
         } else {
