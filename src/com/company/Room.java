@@ -109,8 +109,7 @@ public class Room {
 
         Weapon weaponToDrop = null;
         for (int i = 0; i < this.enemyList.size(); i++) {
-            if (this.enemyList.get(i).getName().contains(enemyName)) {
-                //TODO Gør det muligt at enemy dropper sit våben i rummet efter død
+            if (this.enemyList.get(i).getName().equals(enemyName)) {
                 weaponToDrop = this.enemyList.get(i).getEquippedWeapon();
                 addToItem(weaponToDrop);
                 this.enemyList.remove(i);
@@ -124,7 +123,7 @@ public class Room {
         Enemy enemyToAttack = null;
 
         for (int i = 0; i < enemyList.size(); i++) {
-            if (enemyList.get(i).getName().contains(enemyName)) {
+            if (enemyList.get(i).getName().equals(enemyName)) {
                 enemyToAttack = enemyList.get(i);
             }
         }

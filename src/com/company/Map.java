@@ -28,8 +28,14 @@ public class Map {
         room8.addToItem(new ShootingWeapon("glock", "a gold-plated glock, an infamous game icon.", 12, 30));
 
         // Opretter monster Objekter til de forskellige rum
-        Weapon wire = new MeleeWeapon("take wire", "an exposed wire, be careful not to get electrocuted", 8, 999);
-        room1.addEnemy(new Enemy("peter", "an angry teacher", 50, wire));
+        Weapon claws = new MeleeWeapon("claws", "the dragon's claws, be careful not to cut yourself, they look sharp!", 15, 999);
+        room5.addEnemy(new Enemy("dragon", "a fully programmed dragon made of code", 35, claws));
+        Weapon smogGun = new ShootingWeapon("smogGun", "a gun, upon pressing the trigger, it shoots a thick cloud of toxic smog", 9, 16 );
+        room4.addEnemy(new Enemy("smog", "a giant cloud of smog with no clear beginning or end", 32, smogGun));
+        Weapon codeSword = new MeleeWeapon("sword", "a sword, it's a physical manifestation of some adventure game in the shape of a sword", 10, 999);
+        room3.addEnemy(new Enemy("rogueAI", "an AI who is capable of passing a CAPTCHA, BE AFRAID", 30, codeSword));
+        Weapon gunOfSloth = new ShootingWeapon("slothGun", "a slothGun, used against especially slothful people, or by them...", 8, 9);
+        room9.addEnemy(new Enemy("sloth", "a sloth? Looks harmle- WAIT IT'S GOT A GUN", 25, gunOfSloth));
 
 
         // Sætter Room objekters forbindelse til hinanden

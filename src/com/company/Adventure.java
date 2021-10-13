@@ -289,7 +289,7 @@ public class Adventure {
                 // Equip the weapon and remove it from player inventory
                 if (selectedItem instanceof Weapon) {
                     player.setEquippedItem(selectedItem);
-                    String playerItem = player.getEquippedItem().getName().substring(5);
+                    String playerItem = player.getEquippedItem().getName();
                     System.out.println("The item '" + playerItem + "' has now been equipped!");
                     player.removeItem(selectedItem);
                 }
@@ -302,7 +302,6 @@ public class Adventure {
         }
 
     }
-    //TODO Player skal kunne dø i attack sekvens
     public static void attack(String input) {
         Enemy enemy = player.enemyToAttack(input);
         if(enemy == null) {
