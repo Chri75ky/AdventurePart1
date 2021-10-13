@@ -51,6 +51,7 @@ public class Room {
         return this.enemyList;
     }
 
+    // Method returns string of enemies description in the room
     public String getStringOfEnemiesInRoom() {
         StringBuilder str = new StringBuilder();
 
