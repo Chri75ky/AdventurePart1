@@ -188,8 +188,7 @@ public class Adventure {
         System.out.println(selectedRoom.getDescription() + Colour.TEXT_RESET);
 
         if (selectedRoom.getEnemyList().size() > 0) {
-            //TODO lav en bedre toString til enemyListen
-            System.out.println(selectedRoom.getEnemyList());
+            System.out.println(selectedRoom.getStringOfEnemiesInRoom());
         } else {
             System.out.println("There are no enemies in the room.");
         }

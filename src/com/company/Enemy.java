@@ -41,11 +41,6 @@ public class Enemy {
     public Weapon getEquippedWeapon() {
         return equippedWeapon;
     }
-    @Override //TODO lav til stringBuilder
-    public String toString() {
-        return "Enemy{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
+
 }
+

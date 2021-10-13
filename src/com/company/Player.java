@@ -126,7 +126,7 @@ public class Player {
     }
 
 
-    public void setEquippedItem(Item equippedItem) {   //TODO FJern knuckles fra backpack når de bliver skiftet ud
+    public void setEquippedItem(Item equippedItem) {
         // If player already has an equipped weapon, add it back to
         // the player inventory and replace it with the new weapon
         if (this.equippedItem != null) {

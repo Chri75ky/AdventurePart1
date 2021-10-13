@@ -51,6 +51,16 @@ public class Room {
         return this.enemyList;
     }
 
+    public String getStringOfEnemiesInRoom() {
+        StringBuilder str = new StringBuilder();
+
+        for(int i = 0; i < this.enemyList.size(); i++) {
+            str.append(this.enemyList.get(i).getDescription());
+        }
+        return "In the room there is: " + this.getEnemyList();
+    }
+
+
     // Method returns or sets Room objects directions
     public Room getNorth() {
         return north;
