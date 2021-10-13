@@ -119,6 +119,19 @@ public class Room {
     }
 
 
+    public Enemy getEnemy(String enemyName) {
+
+        Enemy enemyToAttack = null;
+
+        for (int i = 0; i < enemyList.size(); i++) {
+            if (enemyList.get(i).getName().contains(enemyName)) {
+                enemyToAttack = enemyList.get(i);
+            }
+        }
+        return enemyToAttack;
+    }
+
+
     @Override // Overriding toString to return af stringBuilder with all item Objects descriptions in the room
     public String toString() {
 

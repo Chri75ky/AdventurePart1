@@ -166,14 +166,13 @@ public class Player {
         if (input.length() >= 7) {
             String enemyName = input.substring(7);
 
-            for (int i = 0; i < currentRoom.getEnemyList().size(); i++) {
-                if (currentRoom.getEnemyList().get(i).getName().contains(enemyName)) {
-                    enemyToAttack = currentRoom.getEnemyList().get(i);
-                } else {
+            enemyToAttack = currentRoom.getEnemy(enemyName);
+
+           if (enemyToAttack == null) {
                     System.out.println("The enemy " + enemyName + " is not in the room.");
                 }
-            }
-        } else {
+
+            } else {
             // If input is only 'attack' - it will attack enemy at arrayIndex 0
             if (!currentRoom.getEnemyList().isEmpty()) {
                 enemyToAttack = currentRoom.getEnemyList().get(0);
