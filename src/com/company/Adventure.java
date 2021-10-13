@@ -223,9 +223,9 @@ public class Adventure {
         System.out.println("Enter '" + Colour.TEXT_PURPLE + "take [name of item]" + Colour.TEXT_YELLOW + "' if you wish to take the specific item.");
         System.out.println("Enter '" + Colour.TEXT_PURPLE + "drop [name of item]" + Colour.TEXT_YELLOW + "' if you wish to drop the specific item.");
         System.out.println("Enter '" + Colour.TEXT_PURPLE + "inventory" + Colour.TEXT_YELLOW + " / " + Colour.TEXT_PURPLE + "i" + Colour.TEXT_YELLOW + "' if you wish to take a look in your backpack.");
-        System.out.println("Enter '" + Colour.TEXT_PURPLE + "exit" + Colour.TEXT_YELLOW + " / " + Colour.TEXT_PURPLE + "x" + Colour.TEXT_YELLOW + "' to exit the game." + Colour.TEXT_RESET);
-        System.out.println("Enter '" + Colour.TEXT_PURPLE + "health" + Colour.TEXT_YELLOW + " / " + Colour.TEXT_PURPLE + "he" + Colour.TEXT_YELLOW + "' to check your HP." + Colour.TEXT_RESET);
-        System.out.println("Enter '" + Colour.TEXT_PURPLE + "equip [name of weapon]" + Colour.TEXT_YELLOW + "' if you wish to equip the specific weapon." + Colour.TEXT_RESET);
+        System.out.println("Enter '" + Colour.TEXT_PURPLE + "exit" + Colour.TEXT_YELLOW + " / " + Colour.TEXT_PURPLE + "x" + Colour.TEXT_YELLOW + "' to exit the game.");
+        System.out.println("Enter '" + Colour.TEXT_PURPLE + "health" + Colour.TEXT_YELLOW + " / " + Colour.TEXT_PURPLE + "he" + Colour.TEXT_YELLOW + "' to check your HP.");
+        System.out.println("Enter '" + Colour.TEXT_PURPLE + "equip [name of weapon]" + Colour.TEXT_YELLOW + "' if you wish to equip the specific weapon.");
         System.out.println("Enter '" + Colour.TEXT_PURPLE + "attack [name of enemy] / attack" + Colour.TEXT_YELLOW + "' if you wish to attack a specific or nonspecific enemy." + Colour.TEXT_RESET);
     }
 
@@ -304,23 +304,23 @@ public class Adventure {
     public static void attack(String input) {
         Enemy enemyToAttack = player.enemyToAttack(input);
         if(enemyToAttack == null) {
-            System.out.println("Perhaps there is someone else?");
+            System.out.println(Colour.TEXT_YELLOW +"Perhaps there is someone else?" + Colour.TEXT_RESET);
 
         } else if (((Weapon) player.getEquippedItem()).usesLeft() > 0) {
             int damageToEnemy = player.attack();
             enemyToAttack.takeDamage(damageToEnemy);
             ((Weapon) player.getEquippedItem()).ammoUsed();
-            System.out.println("\nYou attack '" + enemyToAttack.getName() + "' for: " + ((Weapon) player.getEquippedItem()).getDamage() + " HP");
-            System.out.println("\nThe enemy '" + enemyToAttack.getName() + "' now has " + enemyToAttack.getCurrentHealth() + " HP!");
+            System.out.println(Colour.TEXT_YELLOW + "\nYou attack '" + Colour.TEXT_RED + enemyToAttack.getName() + Colour.TEXT_YELLOW + "' for: " + Colour.TEXT_YELLOW + ((Weapon) player.getEquippedItem()).getDamage() + " HP");
+            System.out.println(Colour.TEXT_YELLOW + "\nThe enemy '" + Colour.TEXT_RED + enemyToAttack.getName() + Colour.TEXT_YELLOW + "' now has " + enemyToAttack.getCurrentHealth() + " HP!");
             if (enemyToAttack.getCurrentHealth() >= 0) {
                 int damageToPlayer = enemyToAttack.attack();
                 player.takeDamage(damageToPlayer);
-                System.out.println("\nThe enemy '" + enemyToAttack.getName() + "' strikes back!");
+                System.out.println(Colour.TEXT_YELLOW + "\nThe enemy '" + Colour.TEXT_RED + enemyToAttack.getName() + Colour.TEXT_YELLOW + "' strikes back!");
                 System.out.println("\nThe enemy hits you for " + damageToPlayer + " HP!");
-                System.out.println("\nYou now have " + player.getCurrentHealth() + " HP remaining!");
+                System.out.println("\nYou now have " + player.getCurrentHealth() + " HP remaining!" + Colour.TEXT_RESET);
             } else {
-                System.out.println("\nYou strike the finishing blow!");
-                System.out.println("The enemy has been defeated!");
+                System.out.println(Colour.TEXT_CYAN + "\nYou strike the finishing blow!");
+                System.out.println("The enemy has been defeated!" + Colour.TEXT_RESET);
                 selectedRoom.removeEnemy(enemyToAttack.getName());
             }
 

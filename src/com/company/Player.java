@@ -95,7 +95,7 @@ public class Player {
 
     public enum weaponsYouCanEquip {
         // List of weapons that the player can equip from their inventory
-        BOOK, LIGHTER, HELMET, GLOCK
+        BOOK, LIGHTER, HELMET, GLOCK, SLOTHGUN, CLAWS, SMOGGUN, SWORD
     }
 
     public enum edibleItems {
@@ -169,7 +169,7 @@ public class Player {
             enemyToAttack = currentRoom.getEnemy(enemyName);
 
            if (enemyToAttack == null) {
-                    System.out.println("The enemy " + enemyName + " is not in the room.");
+                    System.out.println(Colour.TEXT_YELLOW + "The enemy '" +Colour.TEXT_RED + enemyName + Colour.TEXT_YELLOW + "' is not in the room." + Colour.TEXT_RESET);
                 }
 
             } else {

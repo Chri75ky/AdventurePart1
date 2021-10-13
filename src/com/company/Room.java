@@ -58,7 +58,7 @@ public class Room {
         for(int i = 0; i < this.enemyList.size(); i++) {
             str.append(this.enemyList.get(i).getDescription());
         }
-        return "In the room there is: " + this.getEnemyList();
+        return Colour.TEXT_YELLOW + "In the room there is: " + Colour.TEXT_RED + str + Colour.TEXT_RESET;
     }
 
 

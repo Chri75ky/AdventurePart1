@@ -42,5 +42,9 @@ public class Enemy {
         return equippedWeapon;
     }
 
+    @Override
+    public String toString() {
+        return description;
+    }
 }
 
