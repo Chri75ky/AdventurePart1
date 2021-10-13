@@ -142,8 +142,8 @@ public class Player {
 
 
     // Method deals damage to player object
-    public int takeDamage(int enemyDamage) {
-        this.currentHealth = this.currentHealth - enemyDamage;
+    public int takeDamage(int damageToPlayer) {
+        this.currentHealth = this.currentHealth - damageToPlayer;
         return this.currentHealth;
     }
 
@@ -151,11 +151,11 @@ public class Player {
     // Method returns the damage player object deals
     public int attack() {
 
-        int damage = 0;
+        int damageToEnemy = 0;
         if (equippedItem instanceof Weapon) {
-            damage = ((Weapon) equippedItem).getDamage();
+            damageToEnemy = ((Weapon) equippedItem).getDamage();
         }
-        return damage;
+        return damageToEnemy;
     }
     // Method return enemy object that player wants to attack or are closest to player in the SelectedRoom
     public Enemy enemyToAttack(String input) {

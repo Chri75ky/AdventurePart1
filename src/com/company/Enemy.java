@@ -15,8 +15,8 @@ public class Enemy {
     }
 
     // Method deals damage to monster object
-    public int takeDamage(int playerDamage) {
-        this.currentHealth = this.currentHealth - playerDamage;
+    public int takeDamage(int damageToEnemy) {
+        this.currentHealth = this.currentHealth - damageToEnemy;
         return this.currentHealth;
     }
 

@@ -302,26 +302,26 @@ public class Adventure {
 
     }
     public static void attack(String input) {
-        Enemy enemy = player.enemyToAttack(input);
-        if(enemy == null) {
+        Enemy enemyToAttack = player.enemyToAttack(input);
+        if(enemyToAttack == null) {
             System.out.println("Perhaps there is someone else?");
 
         } else if (((Weapon) player.getEquippedItem()).usesLeft() > 0) {
             int damageToEnemy = player.attack();
-            enemy.takeDamage(damageToEnemy);
+            enemyToAttack.takeDamage(damageToEnemy);
             ((Weapon) player.getEquippedItem()).ammoUsed();
-            System.out.println("\nYou attack '" + enemy.getName() + "' for: " + ((Weapon) player.getEquippedItem()).getDamage() + " HP");
-            System.out.println("\nThe enemy '" + enemy.getName() + "' now has " + enemy.getCurrentHealth() + " HP!");
-            if (enemy.getCurrentHealth() >= 0) {
-                int damageToPlayer = enemy.attack();
+            System.out.println("\nYou attack '" + enemyToAttack.getName() + "' for: " + ((Weapon) player.getEquippedItem()).getDamage() + " HP");
+            System.out.println("\nThe enemy '" + enemyToAttack.getName() + "' now has " + enemyToAttack.getCurrentHealth() + " HP!");
+            if (enemyToAttack.getCurrentHealth() >= 0) {
+                int damageToPlayer = enemyToAttack.attack();
                 player.takeDamage(damageToPlayer);
-                System.out.println("\nThe enemy '" + enemy.getName() + "' strikes back!");
+                System.out.println("\nThe enemy '" + enemyToAttack.getName() + "' strikes back!");
                 System.out.println("\nThe enemy hits you for " + damageToPlayer + " HP!");
                 System.out.println("\nYou now have " + player.getCurrentHealth() + " HP remaining!");
             } else {
                 System.out.println("\nYou strike the finishing blow!");
                 System.out.println("The enemy has been defeated!");
-                selectedRoom.removeEnemy(enemy.getName());
+                selectedRoom.removeEnemy(enemyToAttack.getName());
             }
 
         } else {
