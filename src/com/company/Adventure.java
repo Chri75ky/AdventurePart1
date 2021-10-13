@@ -45,6 +45,11 @@ public class Adventure {
         // Runs the game
         while (runGame) {
 
+            if(player.getCurrentHealth() <= 0){
+                System.out.println("You have died! Try again next time!");
+                break;
+            }
+
             System.out.print(Colour.TEXT_WHITE + "\nPlease input your next action: " + Colour.TEXT_RESET);
             userInput = in.nextLine();
             userInput = userInput.toLowerCase();
@@ -300,8 +305,10 @@ public class Adventure {
     //TODO Player skal kunne dø i attack sekvens
     public static void attack(String input) {
         Enemy enemy = player.enemyToAttack(input);
+        if(enemy == null) {
+            System.out.println("Perhaps there is someone else?");
 
-        if (((Weapon) player.getEquippedItem()).usesLeft() > 0) {
+        } else if (((Weapon) player.getEquippedItem()).usesLeft() > 0) {
             int damageToEnemy = player.attack();
             enemy.takeDamage(damageToEnemy);
             ((Weapon) player.getEquippedItem()).ammoUsed();
